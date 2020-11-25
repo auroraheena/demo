@@ -1,0 +1,6 @@
+name: Customer entity functionality
+type: module
+description: Custom module to use and extend Customer Entity
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9

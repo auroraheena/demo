@@ -1,0 +1,7 @@
+customer_entity_functionality.customer_list:
+  path: '/customer_list'
+  defaults:
+    _title: 'Customer list'
+    _controller: '\Drupal\customer_entity_functionality\Controller\CustomerEntityFunctionalityController::customerListPage'
+  requirements:
+    _permission: 'access content'
