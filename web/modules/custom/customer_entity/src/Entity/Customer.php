@@ -17,6 +17,7 @@ use Drupal\customer_entity\CustomerInterface;
  *   handlers = {
  *     "list_builder" = "Drupal\customer_entity\CustomerListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "access" = "Drupal\customer_entity\CustomerAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\customer_entity\Form\CustomerForm",
  *       "edit" = "Drupal\customer_entity\Form\CustomerForm",

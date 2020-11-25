@@ -1,0 +1,15 @@
+id: entity.customer
+plugin_id: 'entity:customer'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+    - xml
+  authentication:
+    - basic_auth
+    - cookie

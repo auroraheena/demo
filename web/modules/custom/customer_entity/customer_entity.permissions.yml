@@ -1,0 +1,8 @@
+delete customer:
+  title: Delete customer
+create customer:
+  title: Create customer
+view customer:
+  title: View customer
+edit customer:
+  title: Edit customer
