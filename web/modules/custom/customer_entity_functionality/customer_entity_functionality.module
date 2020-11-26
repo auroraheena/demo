@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Customer entity functionality module.
+ */
+
+use  Drupal\customer_entity_functionality\Controller\customerEntityFunctionalityController;
+
+/**
+ * Implements hook_cron().
+ */
+function customer_entity_functionality_cron() {
+    $customerController = new customerEntityFunctionalityController();
+
+    // get CSV $filepath
+    $filepath = $customerController->filepath;
+    // retrieve CSV data
+    if (!is_file($filepath) || !is_readable($filepath)) {
+        throw new \InvalidArgumentException('$filepath must exist and be readable.');
+    }
+    $csv_rows = $customerController->csvFileData($filepath);
+
+    if (!empty($csv_rows)) {
+        foreach ($csv_rows as $csv_row) {
+            if ($csv_row[0]) {
+                $query = \Drupal::entityQuery('customer');
+                $query->condition('customer_id', $csv_row[0]);
+                $customers = $query->execute();
+                if ($customers) {
+                    foreach ($customers as $customer) {
+                        // update the Customer entity.
+                        $customerController->updateCustomerEntity($customer, $csv_row);
+                    }
+                } else {
+                    // Create new Customer entity
+                    $customerController->createCustomerEntity($csv_row);
+                }
+            }
+        }
+    }
+}
